@@ -1,0 +1,160 @@
+<div fxLayout="column" fxLayout.md="row" fxLayout.xs="row" fxLayout.sm="row" id="main-containe">
+    <div fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayout="row" fxFlex.md="100" fxFlex.xs="100"
+        fxFlex.sm="100" fxLayoutAligmnet="space-between center" fxLayoutGap="20px">
+
+        <div class="sub-section-1" fxLayoutGap="30px">
+            <div>
+                <div id="container-1">
+                    <div id="toolbar" fxLayout="row" fxLayout.md="row" fxLayout.xs="row" fxLayout.sm="row"
+                        style="padding: 15px;">
+                        <div fxFlex="70" id="title-toolbar">
+                            <span class="protitle" style=" color: #dedcc7;padding-top: 20px;font-size: 24px;">One Way
+                                Cab India</span>
+                        </div>
+                        <div fxFlex="15" (click)="menuSelected(0)">
+                            <span class="protitle" style="font-size: 12px;">Home</span>
+                        </div>
+                        <div fxFlex="15" (click)="menuSelected(1)">
+                            <span class="protitle" style="font-size: 12px;">Contact</span>
+                        </div>
+                    </div>
+
+                    <!-- <h1 style="color: #f9d700;padding:20px 0px;font-size: 35px;">One Way Cab India</h1> -->
+                    <h3>Need a ride? just call or Book here </h3>
+                    <a href="#">
+                        <span class="title" style="color: #f9d700 !important;padding:20px 0px;font-size: 25px; ">
+                            97393 777 457
+                        </span></a>
+                    <p>
+                        One Way Cab India is already having a good reputation in our city. Now we planned to digitalize
+                        our service.
+                        We mainly focus on customer safety and satisfaction.
+                    </p>
+                    <!-- <div id="mcontainer"></div>  -->
+                    <img id="carImage" src="../../../assets/resources/images/car.png" />
+                    <!-- <a href="#" class="primary-btn text-uppercase">Call for Cab</a> -->
+                </div>
+            </div>
+        </div>
+        <div class="sub-section-2" fxFlex.lt-md="100" fxFlex.lt-sm="100" fxFlex.lt-xs="100" fxFlex="35"
+            fxLayoutGap="30px">
+
+            <div>
+                <div id="container-2">
+                    <form [formGroup]="bookingFrom" id="bookingFormID" #menuBlock (ngSubmit)="bookNew()">
+                        <div>
+                            <span class="title protitle">Book Your Trip Here</span>
+                        </div>
+                        <mat-form-field class="example-full-width" appearance="outline" floatLabel="never">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="custName" name="custName" />
+                            <mat-error *ngIf="bookingFrom.get('custName').hasError('required')">
+                                <strong> Name is required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Phone Number</mat-label>
+                            <input matInput type="number"  formControlName="custPhoneNo" name="custPhoneNo" />
+                            <mat-error *ngIf="bookingFrom.get('custPhoneNo').hasError('required')">
+                                <strong> Phone Number is required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>From</mat-label>
+                            <input matInput formControlName="pickupAddress" name="pickupAddress" />
+                            <mat-error *ngIf="bookingFrom.get('pickupAddress').hasError('required')">
+                                <strong> PickUp Location is required</strong>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>To</mat-label>
+                            <input matInput formControlName="dropAddress" name="dropAddress" />
+                            <mat-error *ngIf="bookingFrom.get('dropAddress').hasError('required')">
+                                <strong> Drop Location is required</strong>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Service Type</mat-label>
+                            <select [(value)]="selected" matNativeControl required formControlName="serviceType"
+                                name="serviceType">
+                                <option value="ANY" selected>Any</option>
+                                <option value="ONE WAY CAB">One Way Cab </option>
+                                <option value="ROUND TRIP">Round Trip</option>
+                            </select>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Car Type</mat-label>
+                            <select [(value)]="selected" matNativeControl required formControlName="carType"
+                                name="carType">
+                                <option value="ANY">Any</option>
+                                <option value="SEDAN">SEDAN (4-5 Setter) + Luggage Space </option>
+                                <option value="SUV">SUV -(6-9 Setter) + Luggage Space</option>
+                                <option value="HATCHBACK">HATCHBACK -(4-5 Setter) + Limited Luggage Space</option>
+                            </select>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Choose a travel date</mat-label>
+                            <input matInput formControlName="pickUpdate" name="pickUpdate" [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="bookingFrom.get('pickUpdate').hasError('required')">
+                                <strong> Travel Date is required</strong>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <div class="time-picker">
+                            <mat-label [ngStyle]="{'color':'#191818','padding':'10px','font-weight': '900','line-height': 'normal',
+                            'text-shadow': 'none'}">Travel Time</mat-label><br>
+                            <div class="hours">
+                                <button mat-icon-button (click)="increaseHours(); $event.preventDefault()">
+                                    <mat-icon [ngStyle]="{'color':'#191818'}">keyboard_arrow_up</mat-icon>
+                                </button>
+
+                                <input type="text" name="1" [value]="hours" class="input">
+
+                                <button mat-icon-button (click)="decreaseHours(); $event.preventDefault()">
+                                    <mat-icon [ngStyle]="{'color':'#191818'}">keyboard_arrow_down</mat-icon>
+                                </button>
+                            </div>
+                            <div class="separator"> : </div>
+                            <div class="minutes">
+                                <button mat-icon-button (click)="increaseMinutes(); $event.preventDefault()">
+                                    <mat-icon [ngStyle]="{'color':'#191818'}">keyboard_arrow_up</mat-icon>
+                                </button>
+
+                                <input type="text" name="1" [value]="minutes" class="input">
+
+                                <button mat-icon-button (click)="decreaseMinutes();$event.preventDefault()">
+                                    <mat-icon [ngStyle]="{'color':'#191818'}">keyboard_arrow_down</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <br>
+                        <div *ngIf="isError"><span style="color: red;">Please Enter valid details</span></div>
+                        <button id="basic" style="width: 200px;" matButton mat-raised-button color="primary" name="book"
+                            type="submit">
+                            Book
+                        </button>
+                    </form>
+                    <div style="padding: 15% 20%;margin: 15% 1%;display:none;" #menuBlock>
+                        <div><br><br><br>
+                            <span class=" title protitle">One Way Cab India</span>
+                            <br>
+                            <div>
+                                <!-- <h3 class="title" ></h3><br> -->
+                                <br>
+                                <span class="title protitle" style="font-weight: 900;">Address :</span><br>
+
+                                <span class="contacttxt protitle">1/13, 2nd New Street,</span><br>
+                                <span class="contacttxt protitle">Tiru Nagar</span><br>
+                                <span class="contacttxt protitle"> Katpadi, Vellore - 632006 </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

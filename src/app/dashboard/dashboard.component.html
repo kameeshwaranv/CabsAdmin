@@ -1,0 +1,273 @@
+<mat-toolbar color="primary">
+    <span>{{title}}</span>
+
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+    <span class="material-icons">autorenew</span>
+</mat-toolbar>
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="New Trips">
+        <mat-card>
+            <div class="example-container mat-elevation-z8">
+                <table mat-table [dataSource]="newTrips">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="tripId">
+                        <th mat-header-cell *matHeaderCellDef> Trip ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="custName">
+                        <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.custName}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="custPhoneNo">
+                        <th mat-header-cell *matHeaderCellDef> Customer Phone Number </th>
+                        <td mat-cell *matCellDef="let element"> {{element.custPhoneNo}} </td>
+                    </ng-container>
+
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="custEmailID">
+                        <th mat-header-cell *matHeaderCellDef> Customer Email ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.custEmailID}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="pickupAddress">
+                        <th mat-header-cell *matHeaderCellDef> Pick Up Address </th>
+                        <td mat-cell *matCellDef="let element"> {{element.pickupAddress}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="pickupTime">
+                        <th mat-header-cell *matHeaderCellDef> Pick Up Time </th>
+                        <td mat-cell *matCellDef="let element"> {{element.pickupTime}} </td>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="serviceType">
+                        <th mat-header-cell *matHeaderCellDef> Service Type</th>
+                        <td mat-cell *matCellDef="let element"> {{element.serviceType}} </td>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="dropAddress">
+                        <th mat-header-cell *matHeaderCellDef> Drop Address </th>
+                        <td mat-cell *matCellDef="let element"> {{element.dropAddress}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="carType">
+                        <th mat-header-cell *matHeaderCellDef> Car Type </th>
+                        <td mat-cell *matCellDef="let element"> {{element.carType}} </td>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="selectBtn">
+                        <th mat-header-cell *matHeaderCellDef> Activate </th>
+                        <td mat-cell *matCellDef="let element">
+                            
+                                <button *ngIf="!element.isActivated" mat-raised-button color="primary" name="activate"
+                                    (click)="activateThisTrip(element)">
+                                    Activate
+                                </button>
+                                <span *ngIf="element.isActivated" style="color:green;">Activated</span>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="newTripColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: newTripColumns;"></tr>
+                </table>
+            </div>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label="Completed Trips">
+        <mat-card>
+            <div class="example-container mat-elevation-z8">
+                <table mat-table *ngIf="completedTrips" [dataSource]="completedTrips">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="tripId">
+                        <th mat-header-cell *matHeaderCellDef> Trip ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.tripId}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="custName">
+                        <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.custName}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="custPhoneNo">
+                        <th mat-header-cell *matHeaderCellDef> Customer Phone Number </th>
+                        <td mat-cell *matCellDef="let element"> {{element.custPhoneNo}} </td>
+                    </ng-container>
+
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="custEmailID">
+                        <th mat-header-cell *matHeaderCellDef> Customer Email ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.custEmailID}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="pickupAddress">
+                        <th mat-header-cell *matHeaderCellDef> Pick Up Address </th>
+                        <td mat-cell *matCellDef="let element"> {{element.pickupAddress}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="pickupTime">
+                        <th mat-header-cell *matHeaderCellDef> Pick Up Time </th>
+                        <td mat-cell *matCellDef="let element"> {{element.pickupTime}} </td>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="serviceType">
+                        <th mat-header-cell *matHeaderCellDef> Pick Up Time </th>
+                        <td mat-cell *matCellDef="let element"> {{element.serviceType}} </td>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="dropAddress">
+                        <th mat-header-cell *matHeaderCellDef> Drop Address </th>
+                        <td mat-cell *matCellDef="let element"> {{element.dropAddress}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="carType">
+                        <th mat-header-cell *matHeaderCellDef> Car Type </th>
+                        <td mat-cell *matCellDef="let element"> {{element.carType}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="driverName">
+                        <th mat-header-cell *matHeaderCellDef> Driver Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.driverName}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="driverPhoneNo">
+                        <th mat-header-cell *matHeaderCellDef> Driver Phone No </th>
+                        <td mat-cell *matCellDef="let element"> {{element.driverPhoneNo}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="vehicleNo">
+                        <th mat-header-cell *matHeaderCellDef> Vehicle No </th>
+                        <td mat-cell *matCellDef="let element"> {{element.vehicleNo}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="landmark">
+                        <th mat-header-cell *matHeaderCellDef> Landmark </th>
+                        <td mat-cell *matCellDef="let element"> {{element.landmark}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <!-- <ng-container matColumnDef="landmark">
+                <th mat-header-cell *matHeaderCellDef> Estimated Amount </th>
+                <td mat-cell *matCellDef="let element"> {{element.estimatedAmout}} </td>
+            </ng-container> -->
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="remarks">
+                        <th mat-header-cell *matHeaderCellDef> Remarks </th>
+                        <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="completedTripColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: completedTripColumns;"></tr>
+                </table>
+            </div>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label="Payment Details">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon style="color:#3f51b5;">money</mat-icon>
+                </mat-panel-title>
+                <mat-panel-description>
+                    <span style="color:#3f51b5;text-shadow: none;">Click here to add new payment details.</span>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <form id="AddPaymentDetailsForm" [formGroup]="addPaymentFG" (ngSubmit)="addToPayment()">
+                <mat-grid-list cols="12" rowHeight="100px">
+                    <mat-grid-tile [colspan]="2">
+
+                        <mat-form-field>
+                            <mat-label>Reference No.</mat-label>
+                            <input matInput type="text" name="RefNo" formControlName="RefNo"
+                                placeholder="Reference No." />
+                        </mat-form-field>
+
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2">
+                        <mat-form-field>
+                            <mat-label>Payment Via</mat-label>
+                            <input matInput type="text" name="PayVia" formControlName="PayVia"
+                                placeholder="Payment Via" />
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2">
+                        <mat-form-field>
+                            <mat-label>Vendor Name</mat-label>
+                            <input type="text" matInput name="RecFrom" formControlName="RecFrom"
+                                placeholder="Received From" />
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2">
+                        <mat-form-field>
+                            <mat-label>Vendor ID</mat-label>
+                            <input type="text" matInput name="vendorId" formControlName="vendorId"
+                                placeholder="Payment Type" />
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2">
+                        <button mat-button type="submit" color="primary">
+                            Add
+                            <mat-icon>add_circle_outline</mat-icon>
+                        </button>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </form>
+
+        </mat-expansion-panel>
+        <mat-card>
+            <div class="example-container mat-elevation-z8">
+                <table mat-table [dataSource]="paymentInfo">
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="paymentRefNo">
+                        <th mat-header-cell *matHeaderCellDef> Payment Reference No. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.paymentId}} </td>
+                    </ng-container>
+
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="paymentType">
+                        <th mat-header-cell *matHeaderCellDef> Payment Via </th>
+                        <td mat-cell *matCellDef="let element"> {{element.paymentvia}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="vendorName">
+                        <th mat-header-cell *matHeaderCellDef> Vendor name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.receivedFrom}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="vendorID">
+                        <th mat-header-cell *matHeaderCellDef> Vendor Id </th>
+                        <td mat-cell *matCellDef="let element"> {{element.paymentId}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="paymentInfoColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: paymentInfoColumns;"></tr>
+                </table>
+            </div>
+        </mat-card>
+    </mat-tab>
+</mat-tab-group>

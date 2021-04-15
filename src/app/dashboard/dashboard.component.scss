@@ -1,0 +1,20 @@
+
+.example-container {
+  height: 500px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+mat-expansion-panel-header {
+  background-color: #dcdcdd00;
+}
+.mat-expansion-panel-body{
+  background-color: #d0d1d3;
+}
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}

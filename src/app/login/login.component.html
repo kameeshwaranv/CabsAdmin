@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+    <span>Cab Service Booking - Admin Module</span>
+
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+    <span class="material-icons">autorenew</span>
+</mat-toolbar>
+<div class="parent">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <mat-form-field class="example-full-width">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" name="username" placeholder="Username" />
+            <mat-error *ngIf="loginForm.controls.username.touched && loginForm.controls.username.invalid">
+                <span *ngIf="loginForm.controls.username.errors.required">This field is mandatory.</span>
+                <!-- <span *ngIf="loginForm.controls.email.errors.pattern">This field is invalid.</span> -->
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" name="password" placeholder="password" />
+            <mat-error *ngIf="loginForm.controls.username.touched && loginForm.controls.username.invalid">
+                <span *ngIf="loginForm.controls.username.errors.required">This field is mandatory.</span>
+                <!-- <span *ngIf="loginForm.controls.email.errors.pattern">This field is invalid.</span> -->
+            </mat-error>
+        </mat-form-field>
+        <!-- <mat-form-field class="example-full-width"> -->
+        <!-- <button mat-button type="submit">Login</button> -->
+        <button id="basic" mat-raised-button color="primary" name="login" type="submit">
+            Login
+        </button>
+        <!-- </mat-form-field> -->
+    </form>
+</div>

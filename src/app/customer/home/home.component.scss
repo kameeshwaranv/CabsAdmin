@@ -1,0 +1,276 @@
+
+
+
+#mcontainer {
+  background-image: url("../../../assets/resources/images/car.png");
+  background-repeat: no-repeat;
+  // background-position: left 50% top 30%;
+  // background-size: 250px;
+}
+//  .mat-form-field {
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: black;
+  border-radius: 10px;
+}
+.time-picker {
+  display: flex;
+  align-items: center;
+  width: 115px;
+  .hours,
+  .minutes {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    align-items: center;
+    .input {
+      background-color: #191818;
+      color: #dedcc7;
+      height: 30px;
+      width: 50px;
+      font-size: 16px;
+      text-align: center;
+      padding: 0;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+    }
+  }
+  .separator {
+    margin: 5px;
+  }
+}
+.mat-input-underline {
+  background-color: green; /* replace this color with your accent color hex code */
+}
+.mat-form-field-label {
+  color: #dedcc7;
+}
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: #dedcc7;
+}
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: #dedcc7;
+}
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
+  background-color: black;
+}
+.mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 0px !important;
+}
+.mat-form-field {
+  width: 200px !important;
+}
+// }
+.container .cardWrap div {
+  height: 300px;
+  border: 2px solid #191818;
+}
+#container-1 {
+  // padding: 1% 20%;
+}
+#container-2 {
+  background-color: #fbdc4d;
+}
+#bookingFormID {
+  padding: 15% 20%;
+  margin: 15% 1%;
+}
+#header {
+  background-color: #fbdc4d;
+  height: 60px;
+}
+// #main-container{
+//   background-image: url("../../../assets/resources/images/car.png");
+//   background-repeat: no-repeat;
+//   background-position: left 23% bottom 0px;
+//   background-size: 512px;
+// }
+.title {
+  color: #191818;
+  outline-width: thick;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 18px;
+  text-shadow: none;
+}
+.contacttxt {
+  color: #191818;
+  outline-width: thin;
+  font-weight: 600;
+  display: inline-block;
+  font-size: 12px;
+  text-shadow: none;
+}
+
+#title-toolbar {
+}
+@media (max-width: 469px) {
+  #container-1 {
+    padding: 15% 6% 0% 6%;;
+  }
+  #title-toolbar {
+    span:first-child {
+      font-size: 18px !important;
+    }
+  }
+  #carImage {
+    height: 115px;
+    margin: 10%;
+  }
+  #toolbar {
+    padding: 15px;
+    margin: 0% -5% 8% -5%;
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+  }
+  #main-container {
+    background-image: url("../../../assets/resources/images/car.png");
+    background-repeat: no-repeat;
+    background-position: left 50% top 30%;
+    background-size: 250px;
+  }
+  .sub-section-2 {
+    // margin-top: 50%;
+  }
+}
+@media (min-width: 470px) and (max-width: 599px) {
+  #container-1 {
+    padding: 15% 18% 0% 5%;
+  }
+  #main-container {
+    background-image: url("../../../assets/resources/images/car.png");
+    background-repeat: no-repeat;
+    background-position: left 48% top 40%;
+    background-size: 467px;
+  }
+  .sub-section-2 {
+    // margin-top: 50%;
+  }
+
+  #carImage {
+    height: 150px;
+  }
+}
+@media (min-width: 600px) and (max-width: 959px) {
+  #container-1 {
+    padding: 15% 18% 0% 5%;
+  }
+  /* smartphones, Android phones, landscape iPhone */
+  #main-container {
+    background-image: url("../../../assets/resources/images/car.png");
+    background-repeat: no-repeat;
+    background-position: left 55% top 40%;
+    background-size: 450px;
+  }
+  .sub-section-2 {
+    // margin-top: 40%;
+  }
+
+  #carImage {
+    height: 180px;
+  }
+}
+@media (min-width: 960px) and (max-width: 1279px) {
+  #container-1 {
+    padding: 15% 18% 0% 5%;
+  }
+  /* smartphones, Android phones, landscape iPhone */
+  #main-container {
+    background-image: url("../../../assets/resources/images/car.png");
+    background-repeat: no-repeat;
+    background-position: left 55% top 44%;
+    background-size: 700px;
+  }
+  .sub-section-2 {
+    margin-top: 0%;
+  }
+
+  #container-1 {
+    padding: 15% 15%;
+  }
+
+  #carImage {
+    height: 220px;
+  }
+}
+@media (min-width: 1280px) {
+  #container-1 {
+    padding: 15% 18% 0% 8%;
+  }
+  /* smartphones, Android phones, landscape iPhone */
+  #main-container {
+    background-image: url("../../../assets/resources/images/car.png");
+    background-repeat: no-repeat;
+    background-position: left 20% top 98%;
+    background-size: 550px;
+    height: 630px;
+  }
+  #carImage {
+    height: 300px;
+  }
+}
+
+//   #toolbar,.hideMob{
+//     display: none !important;
+//   }
+//   #toolbar-Mob{
+//     display:block;
+//   }
+//  }
+// @media (min-width:480px) and (max-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+//   #toolbar,.hideMob{
+//     display: none ;
+//   }
+//   #toolbar-Mob{
+//     display:block;
+//   }}
+// @media (min-width:600px) and (max-width:801px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */
+//   #toolbar,.hideMob{
+//     display: none;
+//   }
+//   #toolbar-Mob{
+//     display:block;
+//   }
+// }
+// @media (min-width:801px) and (max-width:1080px) { /* big landscape tablets, laptops, and desktops */
+//   #main-container{
+//     height: 100vh; /* For 100% screen height */
+//     width:  100vw; /* For 100% screen width */
+//   }
+#toolbar {
+  height: 50px;
+  background-color: #0808086e;
+  /* margin: -1px; */
+  margin-top: -60px;
+  margin-bottom: 70px;
+}
+//   #toolbar-Mob{
+//     display:none;
+//   }
+// }
+// @media (min-width:1080px) and (max-width:1281px) {
+//   #toolbar{
+//     height: 50px;
+//     background-color: rgb(192, 167, 167);
+//     /* margin: -1px; */
+//     margin-top: -60px;
+//     margin-bottom: 70px;
+//   }
+//   #toolbar-Mob{
+//     display:none;
+//   }
+// }
+// @media (min-width:1281px) { /* hi-res laptops and desktops */
+//    #toolbar{
+//   height: 50px;
+//   background-color: black;
+//   /* margin: -1px; */
+//   margin-top: -60px;
+//   margin-bottom: 70px;
+// }
+// #toolbar-Mob{
+//   display:none;
+// }
+// }
