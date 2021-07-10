@@ -1,0 +1,28 @@
+<h1 mat-dialog-title style="color: #0c0c0a !important;">Please check Vendor eligibility to confim this trip </h1>
+<div mat-dialog-content>
+    <mat-label>TRIP ID: {{profileDetail.selectedTripId}}</mat-label>
+    <br>
+    <mat-label>Vendor ID: {{profileDetail.device_id}}</mat-label>
+    <br>
+    <mat-label>Name :{{profileDetail.name}}</mat-label>
+    <br>
+    <mat-label>Phone No.:{{profileDetail.phone_no}}</mat-label>
+    <br>
+    <mat-label>Available Balance :Rs. {{profileDetail.available_Bal}}</mat-label>
+    <br>
+    <mat-label>Is Active : {{profileDetail.profile_status}}</mat-label>
+    <br>
+    <mat-form-field>
+        <input matInput placeholder="Enter Amount detuct from his Account" type="number" #detuctAmt />
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput placeholder="Actual Trip Amount" type="number" #actualAmt />
+    </mat-form-field>
+    <span *ngIf="errorFlag">Enter Valid Details to proceed</span>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="giveThisTrip()">
+        Confim and give this trip
+    </button>
+</div>

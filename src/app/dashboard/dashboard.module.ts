@@ -6,6 +6,7 @@ import { SharedModules } from '../shared.module';
 import { DashboardService } from './dashboard.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogsComponent } from './dialogs/dialogs.component';
+import { ConfirmtripdialogComponent } from './confirmtripdialog/confirmtripdialog.component';
 
 const dashboardRoutes: Routes = [
   {
@@ -18,7 +19,7 @@ const dashboardRoutes: Routes = [
 ]
 
 @NgModule({
-  declarations: [DashboardComponent, DialogsComponent],
+  declarations: [DashboardComponent, DialogsComponent, ConfirmtripdialogComponent],
   imports: [
     CommonModule,
     SharedModules,

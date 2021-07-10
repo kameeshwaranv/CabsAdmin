@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { DialogwindowComponent } from '../shared/dialogwindow/dialogwindow.component';
 import { DashboardService } from './dashboard.service';
 import { DialogsComponent } from './dialogs/dialogs.component';
+import { ConfirmtripdialogComponent } from './confirmtripdialog/confirmtripdialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,10 +19,14 @@ export class DashboardComponent implements OnInit {
   completedTrips: any;
   paymentInfo: any;
   addPaymentFG: FormGroup;
+  orderedlists: any;
+  @ViewChild('tripID') tripID: ElementRef;
   newTripColumns: any = ['tripId', 'custName', 'custPhoneNo', 'custEmailID', 'pickupAddress', 'pickupTime', 'serviceType', 'dropAddress', 'carType', 'selectBtn'];
   completedTripColumns: any = ['tripId', 'custName', 'custPhoneNo', 'custEmailID', 'pickupAddress', 'pickupTime', 'serviceType', 'dropAddress', 'carType',
     'driverName', 'driverPhoneNo', 'vehicleNo', 'landmark', 'remarks'];
-  paymentInfoColumns: any = ['paymentRefNo', 'paymentType', 'vendorName', 'vendorID'];
+  paymentInfoColumns: any = ['paymentRefNo', 'paymentType', 'amount', 'vendorPhoneNo'];
+  orderedListColumns: any = ['device_id', 'phone_no', 'quoted_amt', 'infobtn']
+  selectedTripID: any;
   constructor(
     private services: DashboardService,
     private _activatedRoute: ActivatedRoute,
@@ -33,8 +38,8 @@ export class DashboardComponent implements OnInit {
     this.addPaymentFG = this._formBuilder.group({
       RefNo: [null, [Validators.required]],
       PayVia: [null, [Validators.required]],
-      RecFrom: [null, [Validators.required]],
-      vendorId: [null, [Validators.required]]
+      amount: [null, [Validators.required]],
+      vendorPhoneNo: [null, [Validators.required]]
     })
 
     const response = this._activatedRoute.snapshot.data['DashboardServices'];
@@ -43,12 +48,21 @@ export class DashboardComponent implements OnInit {
     this.paymentInfo = response[2].record.list;
 
   }
+
   addToPayment(): void {
     if (!this.addPaymentFG.invalid) {
       this.services.addNewPaymentDetail(this.addPaymentFG.value)
-        .subscribe(data => {
-          console.log(data)
-
+        .subscribe(resp => {
+          console.log(resp)
+          if (resp.status == 100) {
+            this.dialog.open(DialogwindowComponent, {
+              data: resp.record
+            })
+          } else {
+            this.dialog.open(DialogwindowComponent, {
+              data: resp.error
+            })
+          }
         })
     }
   }
@@ -61,7 +75,7 @@ export class DashboardComponent implements OnInit {
       reqData = { ...activateTrip, ...returnedData };
       console.log(reqData)
       /***
-       * PN will be send to vendor and record will be saved in Activated table
+       * PN will be send to vendor and isActivate field will be changed in newtrips saved in Activated
        */
       this.services.moveToActivate(reqData)
         .subscribe(Response => {
@@ -80,5 +94,49 @@ export class DashboardComponent implements OnInit {
           }
         })
     })
+  }
+  searchOrdersByTripId() {
+    console.log(this.tripID.nativeElement.value)
+    const tripID = this.tripID.nativeElement.value;
+    if (tripID.length == 0) {
+      this.dialog.open(DialogwindowComponent, {
+        data: 'Please enter valid trip ID'
+      })
+    } else {
+      const request = { tripId: tripID }
+      this.services.getOrderedList(request)
+        .subscribe(response => {
+          // console.log(response.resp)
+          if (response.status == 100) {
+            this.selectedTripID = this.tripID.nativeElement.value;
+            this.orderedlists = response.resp.interestedVendor;
+            console.log(this.orderedlists)
+          } else {
+            this.dialog.open(DialogwindowComponent, {
+              data: response.error
+            })
+          }
+        })
+    }
+  }
+
+  checkThisVendorInfo(element) {
+    console.log(element.device_id)
+    const request = { device_id: element.device_id };
+    this.services.checkProfileInfo(request)
+      .subscribe(response => {
+        let record = response.resp;
+        record['selectedTripId'] = this.selectedTripID;
+        if (response.status == 100) {
+          console.log(response.resp)
+          this.dialog.open(ConfirmtripdialogComponent, {
+            data: record
+          })
+        } else {
+          this.dialog.open(DialogwindowComponent, {
+            data: response.error
+          })
+        }
+      })
   }
 }

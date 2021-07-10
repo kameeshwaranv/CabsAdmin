@@ -7,17 +7,17 @@ const routes: Routes = [
   {
     path: '',
     children: [
+      // {
+      //   path: '', 
+      //   children: [
+      //     {
+      //       path: '',
+      //       loadChildren: () => import('../app/customer/customer.module').then(m => m.CustomerModule),
+      //     }
+      //   ]
+      // },
       {
-        path: '', 
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('../app/customer/customer.module').then(m => m.CustomerModule),
-          }
-        ]
-      },
-      {
-        path: 'Admin',
+        path: '',
         children: [
           // {
           //   path: '', redirectTo: 'Admin',
@@ -39,7 +39,7 @@ const routes: Routes = [
 
   {
     path: '**',
-    loadChildren: () => import('../app/customer/customer.module').then(m => m.CustomerModule),
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
   }
 
 

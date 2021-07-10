@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,12 +12,12 @@ export class HttpService {
       // "USER_KEY", "QIF83Fjoe4sYxdQsah3h")    
       'Content-Type': 'application/json',
       'Access-Control-Allow-Headers': '*',
-      'Access-Control-Allow-Origin':'*'
+      'Access-Control-Allow-Origin': '*'
       // 'Content-Type':'application/x-www-form-urlencoded'
     })
   }
   constructor(private http: HttpClient) { }
-  BASE_URL: string = 'http://192.168.0.161:8100/api/'; //'https://www.onewaycabindia.in/api/';
+  BASE_URL: string = 'https://onewaycabindia.in/api/';//environment.apiURL; //'https://www.onewaycabindia.in/api/';
   getHeader(body: any) {
     return {
       Header: {
@@ -38,13 +39,13 @@ export class HttpService {
 
   invokeRequest(req: any, path: string): Observable<any> {
     // const requestObj = this.getHeader(req);
-	try{
-		JSON.stringify(req)
-	}catch(e){
-		req ={};
-	}
-     const config = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
-    return this.http.post(this.BASE_URL + path,JSON.stringify(req),config);
+    try {
+      JSON.stringify(req)
+    } catch (e) {
+      req = {};
+    }
+    const config = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
+    return this.http.post(this.BASE_URL + path, JSON.stringify(req), config);
   }
 
   // Handle API errors  

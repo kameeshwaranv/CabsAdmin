@@ -15,6 +15,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from "@angular/material/core";
+import { MatListModule } from '@angular/material/list';
 @NgModule({
     declarations: [],
     imports: [
@@ -31,7 +32,8 @@ import { MatNativeDateModule } from "@angular/material/core";
         MatIconModule,
         MatDatepickerModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatListModule
     ],
     exports: [
         MatToolbarModule,
@@ -48,7 +50,8 @@ import { MatNativeDateModule } from "@angular/material/core";
         MatDatepickerModule,
         FlexLayoutModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatListModule
     ],
     providers: [
         MatDatepickerModule

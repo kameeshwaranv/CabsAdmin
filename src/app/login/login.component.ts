@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     let password = this.loginForm.get('password').value;
     if (userName == 'cabservice' && password == 'sR8oA8tY8') {
       this.commonService.loginStatus = true;
-      this.router.navigate(['Admin/App']);
+      this.router.navigate(['App']);
     }
   }
 }

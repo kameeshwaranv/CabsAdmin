@@ -67,12 +67,12 @@
                     <ng-container matColumnDef="selectBtn">
                         <th mat-header-cell *matHeaderCellDef> Activate </th>
                         <td mat-cell *matCellDef="let element">
-                            
-                                <button *ngIf="!element.isActivated" mat-raised-button color="primary" name="activate"
-                                    (click)="activateThisTrip(element)">
-                                    Activate
-                                </button>
-                                <span *ngIf="element.isActivated" style="color:green;">Activated</span>
+
+                            <button *ngIf="!element.isActivated" mat-raised-button color="primary" name="activate"
+                                (click)="activateThisTrip(element)">
+                                Activate
+                            </button>
+                            <span *ngIf="element.isActivated" style="color:green;">Activated</span>
                         </td>
                     </ng-container>
 
@@ -213,15 +213,15 @@
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2">
                         <mat-form-field>
-                            <mat-label>Vendor Name</mat-label>
-                            <input type="text" matInput name="RecFrom" formControlName="RecFrom"
-                                placeholder="Received From" />
+                            <mat-label>Amount</mat-label>
+                            <input type="number" matInput name="amount" formControlName="amount"
+                                placeholder="Amount" />
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2">
                         <mat-form-field>
-                            <mat-label>Vendor ID</mat-label>
-                            <input type="text" matInput name="vendorId" formControlName="vendorId"
+                            <mat-label>Vendor Phone No.</mat-label>
+                            <input type="number" matInput name="vendorPhoneNo" formControlName="vendorPhoneNo"
                                 placeholder="Payment Type" />
                         </mat-form-field>
                     </mat-grid-tile>
@@ -253,15 +253,15 @@
                     </ng-container>
 
                     <!-- Symbol Column -->
-                    <ng-container matColumnDef="vendorName">
-                        <th mat-header-cell *matHeaderCellDef> Vendor name </th>
-                        <td mat-cell *matCellDef="let element"> {{element.receivedFrom}} </td>
+                    <ng-container matColumnDef="amount">
+                        <th mat-header-cell *matHeaderCellDef> Amount </th>
+                        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
                     </ng-container>
 
                     <!-- Symbol Column -->
-                    <ng-container matColumnDef="vendorID">
-                        <th mat-header-cell *matHeaderCellDef> Vendor Id </th>
-                        <td mat-cell *matCellDef="let element"> {{element.paymentId}} </td>
+                    <ng-container matColumnDef="vendorPhoneNo">
+                        <th mat-header-cell *matHeaderCellDef> Vendor Phone Number </th>
+                        <td mat-cell *matCellDef="let element"> {{element.vendorPhoneNo}} </td>
                     </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="paymentInfoColumns; sticky: true"></tr>
@@ -269,5 +269,68 @@
                 </table>
             </div>
         </mat-card>
+    </mat-tab>
+    <mat-tab label="Orders">
+
+
+        <mat-form-field>
+            <mat-label>Trip ID</mat-label>
+            <input matInput #tripID>
+        </mat-form-field>
+        <button mat-stroked-button (click)="searchOrdersByTripId()">Search</button>
+
+
+        <!-- <mat-list> -->
+        <mat-card>
+            <div class="example-container mat-elevation-z8">
+                <table mat-table [dataSource]="orderedlists">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="device_id">
+                        <th mat-header-cell *matHeaderCellDef> Vendor ID </th>
+                        <td mat-cell *matCellDef="let element">{{element.device_id}} </td>
+                    </ng-container>
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="phone_no">
+                        <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+                        <td mat-cell *matCellDef="let element">{{element.phone_no}} </td>
+                    </ng-container>
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="quoted_amt">
+                        <th mat-header-cell *matHeaderCellDef> Quoted Amount </th>
+                        <td mat-cell *matCellDef="let element">{{element.quoted_amt}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="infobtn">
+                        <th mat-header-cell *matHeaderCellDef> Vendor Info. </th>
+                        <td mat-cell *matCellDef="let element">
+
+                            <button *ngIf="!element.isActivated" mat-raised-button color="primary" name="activate"
+                                (click)="checkThisVendorInfo(element)">
+                                Check
+                            </button>
+                            <span *ngIf="element.isActivated" style="color:green;">Activated</span>
+                        </td>
+                    </ng-container>
+
+
+                    <tr mat-header-row *matHeaderRowDef="orderedListColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: orderedListColumns;"></tr>
+                   
+                </table>
+
+            </div>
+        </mat-card>
+        <!-- <mat-list-item *ngFor="let Orderedlist of orderedlists;">
+                        <p>{{Orderedlist.device_id}}</p>
+                        <p>{{Orderedlist.phone_no}}</p>
+                        <p>{{Orderedlist.quoted_amt}}</p>
+                        <mat-action-list>
+                            <button mat-icon-button (click)="showInfo(Orderedlist)">
+                                <mat-icon>info</mat-icon>
+                            </button>
+                        </mat-action-list>
+                    </mat-list-item> -->
+        <!-- </mat-list> -->
     </mat-tab>
 </mat-tab-group>

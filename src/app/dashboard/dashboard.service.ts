@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { forkJoin, Observable, of, Subject } from 'rxjs';
+import { forkJoin, Observable, ObservedValueOf, of, Subject } from 'rxjs';
 import { HttpService } from '../commonFloor/http.service';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class DashboardService implements Resolve<any>{
   }
 
   getNewTrip(): Observable<any> {
-    const _Request = this.http.FrameRequest({ limit: 0, lastId: 'Admin' });
+    const _Request = this.http.FrameRequest({ limit: 0, lastId: 'Admin', channel: 'App' });
     return this.http.invokeRequest(_Request, 'newtrips/fetchNewTrips')
   }
 
@@ -48,9 +48,23 @@ export class DashboardService implements Resolve<any>{
   }
 
   /**** New Trip to ACtivate state */
-  moveToActivate(request:any): Observable<any> {
+  moveToActivate(request: any): Observable<any> {
     const _Request = this.http.FrameRequest(request);
     return this.http.invokeRequest(_Request, 'newtrips/moveToActive')
+  }
+  /***Search Trip ID */
+  getOrderedList(request: any): Observable<any> {
+    const _Request = this.http.FrameRequest(request);
+    return this.http.invokeRequest(_Request, 'orderTrip/searchOrderedTrip')
+  }
+  checkProfileInfo(request: any): Observable<any> {
+    const _Request = this.http.FrameRequest(request);
+    return this.http.invokeRequest(_Request, 'orderTrip/checkProfileEligibility')
+  }
+
+  confirmbooking(request: any): Observable<any> {
+    const _Request = this.http.FrameRequest(request)
+    return this.http.invokeRequest(_Request, 'completedtrips/finalBooking');
   }
 
 }
